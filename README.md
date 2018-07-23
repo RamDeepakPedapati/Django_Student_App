@@ -4,4 +4,4 @@
   - There are two types of users with different types of permissions
   - Implemented RestFrameWork
   - Included ReactJs 
-  - Edited Debug-Toolbar 
+  - Edited Debug-Toolbar with 
