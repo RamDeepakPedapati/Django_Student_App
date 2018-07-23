@@ -1,0 +1,14 @@
+<table border=2 align=center>
+{% if c_object %}
+	<tr><td><h3>College Name</h3></td><td><h3>Acronym</h3></td></tr> 
+    {% for college in c_object %}
+    <tr>
+        <td>{{college.name}}</td><td>{{college.acronym}}</td>
+    </tr>
+    {% endfor %}
+    
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</table>
+	

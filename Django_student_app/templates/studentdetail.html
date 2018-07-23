@@ -1,0 +1,19 @@
+<head>
+     <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<table border=2 align=center>
+{% if c_object %}
+	<tr><td><h3>College Name</h3></td><td><h3>Email</h3></td><td><h3>Acronym</h3></td></tr> 
+    {% for student in c_object %}
+    <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.college__acronym}}</td>
+    </tr>
+    {% endfor %}
+    
+{% else %}
+    <p>No Values     are available.</p>
+{% endif %}
+</table>
+	

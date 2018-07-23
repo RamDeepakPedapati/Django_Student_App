@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+	<div class="cols-xs-6 cols-xs-offset-3">
+		<form method="post">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Add Student</legend>
+
+				<div class="form-group">
+					<label for="{{ for.name.id_for_label }}">Name</label>
+					{{student_form.name}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.email.id_for_label }}">Email</label>
+					{{student_form.email}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.db_folder.id_for_label }}">Db Folder</label>
+					{{student_form.db_folder}}
+				</div>
+				<div class="form-group" align="left">
+					<label >Dropped out</label>
+					{{student_form.dropped_out}}
+				</div>
+
+				<div class="form-group">
+					<label for="{{ for.problem1.id_for_label }}">Problem1</label>
+					{{test_form.problem1}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.problem2.id_for_label }}">Problem2</label>
+					{{test_form.problem2}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.problem3.id_for_label }}">Problem3</label>
+					{{test_form.problem3}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.problem4.id_for_label }}">Problem4</label>
+					{{test_form.problem4}}
+				</div>
+				
+
+				<input type="submit" value="submit"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

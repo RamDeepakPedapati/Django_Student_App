@@ -1,0 +1,42 @@
+
+	
+{% extends "_base.html" %}
+
+{% block content %}
+
+<table class="table table-striped" =2 align=center>
+	
+<h1 align="center">Students of {{college_name}}</h1>
+		<br>	
+		 <br>
+		 {% if 'onlineapp.add_student' in user_permissions %}
+		 <button class="btn btn-default active"><a href="{{collegeID}}/students/add">Add Student</a></button>
+		 {% endif %}
+		 <br>
+		 <br>
+{% if students %}
+	<thead class="thead-light">
+	<tr><td>Student ID</td><td>Student Name</td><td>Total Marks</td>
+		{% if 'onlineapp.delete_student' in user_permissions and 'onlineapp.change_student' in user_permissions %}
+		<td colspan="2">Actions</td></tr>
+		 {% endif %}
+</thead>
+    {% for student in students %}
+    <tr>
+    	<td>{{student.student__id}}</td>
+        <td>{{student.student__name}}</td>
+        <td>{{student.student__mocktest1__total}}</td>
+ 
+        {% if 'onlineapp.delete_student' in user_permissions and 'onlineapp.change_student' in user_permissions %}
+         <td><a href="{{student.id}}/students/{{student.student__id}}/edit">edit</a></td>
+	     <td><a href="{{student.id}}/students/{{student.student__id}}/delete">delete</a></td>
+	     {% endif %}
+    </tr>
+    {% endfor %}
+    
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</table>		
+{% endblock %}
+

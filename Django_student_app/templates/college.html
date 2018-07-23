@@ -1,0 +1,43 @@
+
+{% extends "_base.html" %}
+
+{% block content %}
+	<table class=" table-striped">
+		 <h1 align="center">College Details</h1>
+		 <br>
+		 <br>
+		 {% if 'onlineapp.add_college' in user_permissions %}
+		 <button class="btn btn-default active"><a href="{% url 'onlineapp:add_college' %}">Add College</a></button>
+		 {% endif %}
+		 <br>
+		 <br>
+	{% if colleges %}
+		<thead class="thead-light">
+		<tr><td>College Name</td><td>Acronym</td>
+		{% if 'onlineapp.change_college' in user_permissions or 'onlineapp.delete_college' in user_permissions %}
+		<td colspan="2">Actions</td></tr> 
+		{% endif %}
+		</thead>
+	    {% for college in colleges %}
+	    <tr>
+	    
+	        <td><a href="{% url 'onlineapp:collegesmarks' college.id %}" > {{ college.name }}</a></td>
+	        <td>{{college.acronym}}</td>
+	        {% if 'onlineapp.change_college' in user_permissions %}
+	        <td><a href="{% url 'onlineapp:collegesmarks' college.id %}/edit" >edit</a></td>
+	        {% endif %}
+	        {% if 'onlineapp.delete_college' in user_permissions %}
+	        <td><a href="{% url 'onlineapp:collegesmarks' college.id %}/delete" >delete</a></td>
+	        {% endif %}
+	    </tr>
+	    {% endfor %}
+	    
+	{% else %}
+	    <p>No polls are available.</p>
+	{% endif %}
+	</table>
+{% endblock %}
+
+
+
+

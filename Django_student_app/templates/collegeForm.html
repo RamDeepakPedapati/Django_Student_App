@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="cols-xs-6 cols-xs-offset-3">
+		<form method="post">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Add Colleges</legend>
+				<div class="form-group">
+					<label for="{{ for.name.id_for_label }}">Name</label>
+					{{form.name}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.location.id_for_label }}">Location</label>
+					{{form.location}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.acronym.id_for_label }}">Acronym</label>
+					{{form.acronym}}
+				</div>
+				<div class="form-group">
+					<label for="{{ for.contact.id_for_label }}">contact</label>
+					{{form.contact}}
+				</div>
+				<input type="submit" value="submit"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

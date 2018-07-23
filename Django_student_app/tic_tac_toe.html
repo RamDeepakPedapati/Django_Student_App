@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title> Tic-Tac-Toe </title>    
+<style>
+    *{
+        background-color:#baf2bc;
+    }
+    
+    button {
+    background-color:  cornflowerblue;
+    border: 2;
+    width:100px;
+    background-color: #31e222;
+    text-align: center;
+    align-content: center;
+    height: 100px;
+    font-size: 50px;
+    text-decoration-color: fuchsia; 
+    cursor: grab;
+}
+    button:hover{
+        background-color: orange;
+    }
+    
+    table{
+    margin: auto ;
+    align-items: center;
+    align-items: center;
+    padding: inherit;
+    align-content:center;    
+    }
+    #button_div{
+     align-content: center;
+    
+    }
+    
+    #u_r{
+        align:right;
+        background-color: azure;
+        font-size: 30px;
+    }
+    
+    
+    #container{
+    font-size: 80px;
+    text-align:center;
+    color: maroon;
+    }
+    
+    
+    
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+var winner=0;
+stack_top=-1;
+var moves=0;   
+var x_arr=new Array(10);
+var y_arr=new Array(10);
+
+var grid=new Array(3);
+grid[0]=new Array(3);
+grid[1]=new Array(3);
+grid[2]=new Array(3);
+currentPlayer=1;
+
+for (var i=0; i<3; i++) {
+  for (var j=0; j<3; j++) {
+    grid[i][j]=0;
+  }
+}
+
+console.log("hello");
+        
+        
+function isGameOver() {
+        for(var iter=0;iter<3 && winner==0;iter++)
+            {
+                if((grid[iter][0]==grid[iter][1]) &&( grid[iter][1]==grid[iter][2]) && grid[iter][0]!=0)
+                {
+                 winner=grid[iter][0]; 
+                    break;
+                }    
+            }
+        
+        
+        for(var iter=0;iter<3 && winner==0;iter++)
+            {
+                if((grid[0][iter]==grid[1][iter]) && (grid[1][iter]==grid[2][iter])&& grid[0][iter]!=0)
+                {
+                 winner=grid[0][iter]; 
+                    break;
+                }    
+            }
+        if(grid[0][0]==grid[1][1] && grid[1][1]==grid[2][2] && winner==0)
+          winner=grid[0][0];
+        if(grid[0][2]==grid[1][1] && grid[2][0]==grid[1][1] && winner==0)
+          winner=grid[0][2];
+        
+        if(winner!=0)
+            {
+                console.log("winner is ");
+                 console.log(winner);    
+              return winner;
+            }
+    return 0;
+            
+        }
+        
+        
+function clickCell(x,y) {
+  if (grid[x][y]>0) {
+    alert("select a valid option");
+  } 
+  else {
+    if (currentPlayer==1) {
+      document.getElementById("cell_"+x+"_"+y).style.color="#240be2";
+      document.getElementById("cell_"+x+"_"+y).innerHTML="X";
+    document.getElementById("container").innerHTML = "O Turn";
+    x_arr[top]=x;
+    y_arr[top]=y;
+        stack_top=stack_top+1;
+      grid[x][y]=1;
+      currentPlayer=2;
+    moves=moves+1;
+    } else {
+       document.getElementById("cell_"+x+"_"+y).style.color="rgba(237, 7, 15, 0.91)";
+       document.getElementById("cell_"+x+"_"+y).innerHTML="O";
+        document.getElementById("container").innerHTML = "X Turn";
+        x_arr[top]=x;
+        y_arr[top]=y;
+        stack_top=stack_top+1;
+      grid[x][y]=2;
+      currentPlayer=1;
+    moves=moves+1;
+    }
+  }
+    var win=isGameOver();
+  if(moves==9)
+      {
+        document.getElementById("container").innerHTML = "--------Draw Match------";    
+          setTimeout(function () { location.reload(1); }, 5000);
+          reset();
+      }
+  else if(win==1 || win==2)
+    {
+      document.getElementById("container").innerHTML = "Player "+isGameOver()+" WON";
+        setTimeout(function () { location.reload(1); }, 5000);
+      reset();
+    }
+}
+
+        
+function undo(){
+    if(stack_top >= 0)
+        {
+            x=x_arr[top];
+            y=y_arr[top];
+            grid[x][y]=0;
+            document.getElementById("cell_"+x+"_"+y).innerHTML=' ';
+            stack_top--;
+            moves=moves-1;
+            if(currentPlayer==1)
+                {
+                    currentPlayer=1;
+                }
+            else if(currentPlayer==2)
+                {
+                    currentPlayer==2;    
+                }
+                
+        }
+}
+            
+function reset() {
+for (var i=0; i<=2; i++) {
+  for (var j=0; j<=2; j++) {
+    grid[i][j]=0;
+    document.getElementById("cell_"+i+"_"+j).innerHTML="&nbsp;";
+  }
+}
+ currentPlayer=1;
+  setTimeout(function () { location.reload(1); }, 5000);
+}    
+    
+</script>
+
+</head>
+<body>
+
+
+<div id='container'> X - O </div>
+
+<table id='board'>
+  <tr>
+    <td><button id="cell_0_0" onClick="clickCell(0,0)">&nbsp;&nbsp</button></td>
+    <td><button id="cell_0_1" onClick="clickCell(0,1)">&nbsp; </button></td>
+    <td><button id="cell_0_2"onClick="clickCell(0,2)">&nbsp; </button></td>
+  </tr>
+  <tr>
+    <td><button id="cell_1_0" onClick="clickCell(1,0)"> &nbsp;</button></td>
+    <td><button id="cell_1_1" onClick="clickCell(1,1)">&nbsp;</button></td>
+    <td><button  id="cell_1_2" onClick="clickCell(1,2)">&nbsp;</button></td>
+  </tr>
+  <tr>
+     <td><button id="cell_2_0" onClick="clickCell(2,0)"> &nbsp;</button></td>
+    <td><button id="cell_2_1" onClick="clickCell(2,1)">&nbsp;</button></td>
+    <td><button id="cell_2_2" onClick="clickCell(2,2)">&nbsp;</button></td>
+  </tr>
+</table>
+<div id='button_div'>
+    <button id="u_r" onClick="undo()">Undo</button>
+    <button id="u_r" onClick="redo()">Redo</button>
+    </div>
+             
+</body>  
+</html>

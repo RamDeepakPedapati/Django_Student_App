@@ -1,0 +1,33 @@
+.header {
+    padding:10px;
+    background-color:cyan;
+}
+
+.menu{
+    float:right;
+    padding:5px;
+    margin-top:-30px;
+    
+}
+
+.titles{
+    font-family: 'Times New Roman', Times, serif;
+    float: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+tr{
+    height: 5px;
+    width: 10px;
+}
+
+
+table{
+    align:center;
+    width:80%;
+    margin: 0 auto;
+    
+}
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+body, html {
+	height: 100%;
+	font-family: sans-serif;
+}
+
+
+
+table * {
+  position: relative;
+}
+table td, table th {
+  padding-left: 8px;
+}
+table thead tr {
+  height: 60px;
+  background: #36304a;
+}
+table tbody tr {
+  height: 50px;
+}
+table tbody tr:last-child {
+  border: 0;
+}
+table td, table th {
+  text-align: left;
+}
+tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #305080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+tbody tr:hover {
+  color: #555555;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+	
+</style>
+
+</head>
+<body>
+<table  align=center>
+{% if c_object %}
+	<tr><td><h3>College Name</h3></td><td><h3>Email</h3></td><td><h3>Acronym</h3></td></tr> 
+    {% for student in c_object %}
+    <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.college__acronym}}</td>
+    </tr>
+    {% endfor %}
+    
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</table>	
+</body>
+</html>
+
+
+
+	
